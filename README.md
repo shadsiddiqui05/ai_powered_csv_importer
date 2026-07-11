@@ -40,7 +40,7 @@ An intelligent CSV importer that uses AI (Google Gemini) to automatically map an
 |-------|-----------|
 | Frontend | Next.js 14, React 18, Vanilla CSS |
 | Backend | Express.js, TypeScript, Multer |
-| AI | Google Gemini 2.0 Flash (`@google/genai`) |
+| AI | Google gemini-2.5-flash-lite (`@google/genai`) |
 | CSV | PapaParse (client + server) |
 | Container | Docker + Docker Compose |
 
