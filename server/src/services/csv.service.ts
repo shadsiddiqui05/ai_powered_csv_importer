@@ -1,4 +1,5 @@
 import Papa from 'papaparse';
+import * as XLSX from 'xlsx';
 import { CsvRow } from '../types';
 
 interface ParseResult {
@@ -33,4 +34,46 @@ export function parseCsv(fileBuffer: Buffer): ParseResult {
   const headers = result.meta.fields || [];
 
   return { rows, headers, errors };
+}
+
+/**
+ * Parses an Excel file buffer into structured rows.
+ * Extracts the first worksheet and converts to JSON.
+ */
+export function parseExcel(fileBuffer: Buffer): ParseResult {
+  let workbook;
+  try {
+    workbook = XLSX.read(fileBuffer, { type: 'buffer' });
+  } catch (error) {
+    return { rows: [], headers: [], errors: ['Failed to read Excel file format.'] };
+  }
+
+  if (workbook.SheetNames.length === 0) {
+    return { rows: [], headers: [], errors: ['Excel file contains no sheets.'] };
+  }
+
+  const firstSheetName = workbook.SheetNames[0];
+  const worksheet = workbook.Sheets[firstSheetName];
+  
+  const rawData = XLSX.utils.sheet_to_json<Record<string, any>>(worksheet, { defval: '' });
+
+  if (rawData.length === 0) {
+    return { rows: [], headers: [], errors: ['Excel sheet is empty.'] };
+  }
+
+  const headers = Object.keys(rawData[0]).map((h) => String(h).trim());
+  const rows = rawData.map((row) => {
+    const formattedRow: Record<string, string> = {};
+    for (const key of Object.keys(row)) {
+      formattedRow[String(key).trim()] = String(row[key] ?? '').trim();
+    }
+    return formattedRow;
+  });
+
+  // Filter out completely empty rows
+  const filteredRows = rows.filter((row) => {
+    return Object.values(row).some((val) => val !== '' && val !== undefined);
+  });
+
+  return { rows: filteredRows, headers, errors: [] };
 }

@@ -32,22 +32,23 @@ export function useCsvImport(): UseCsvImportReturn {
 
     try {
       // Validate file type
-      if (!selectedFile.name.toLowerCase().endsWith('.csv')) {
-        throw new Error('Please upload a valid CSV file.');
+      const name = selectedFile.name.toLowerCase();
+      if (!name.endsWith('.csv') && !name.endsWith('.xlsx') && !name.endsWith('.xls')) {
+        throw new Error('Please upload a valid CSV or Excel file.');
       }
 
-      // Parse CSV on client side for preview
+      // Parse file on client side for preview
       const parsed = await parseCsvFile(selectedFile);
 
       if (parsed.rowCount === 0) {
-        throw new Error('The CSV file is empty or contains no valid data.');
+        throw new Error('The file is empty or contains no valid data.');
       }
 
       setFile(selectedFile);
       setParsedCsv(parsed);
       setStep('preview');
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to read CSV file');
+      setError(err instanceof Error ? err.message : 'Failed to read file');
     } finally {
       setIsLoading(false);
     }

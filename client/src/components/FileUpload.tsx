@@ -83,7 +83,7 @@ export default function FileUpload({ onFileSelect, isLoading }: FileUploadProps)
       onClick={handleClick}
       role="button"
       tabIndex={0}
-      aria-label="Upload CSV file"
+      aria-label="Upload CSV or Excel file"
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           handleClick();
@@ -93,7 +93,7 @@ export default function FileUpload({ onFileSelect, isLoading }: FileUploadProps)
       <input
         ref={fileInputRef}
         type="file"
-        accept=".csv"
+        accept=".csv,.xlsx,.xls"
         onChange={handleInputChange}
         style={{ display: 'none' }}
         id="csv-file-input"
@@ -107,14 +107,14 @@ export default function FileUpload({ onFileSelect, isLoading }: FileUploadProps)
         {isLoading
           ? 'Reading your file...'
           : isDragOver
-            ? 'Drop your CSV here!'
-            : 'Upload your CSV file'}
+            ? 'Drop your file here!'
+            : 'Upload your CSV or Excel file'}
       </h2>
 
       <p className="upload-subtitle">
         {isLoading
           ? 'Parsing columns and rows...'
-          : 'Drag & drop your CSV file here, or click to browse'}
+          : 'Drag & drop your CSV or Excel file here, or click to browse'}
       </p>
 
       {!isLoading && (
@@ -131,7 +131,7 @@ export default function FileUpload({ onFileSelect, isLoading }: FileUploadProps)
       )}
 
       <p className="upload-hint">
-        Supports any CSV format — Facebook Leads, Google Ads, CRM exports, and more
+        Supports CSV and Excel files — Facebook Leads, Google Ads, CRM exports, and more
       </p>
     </div>
   );

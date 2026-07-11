@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { parseCsv } from '../services/csv.service';
+import { parseCsv, parseExcel } from '../services/csv.service';
 import { AiService } from '../services/ai.service';
 import { validateCsvFile } from '../utils/validation';
 import { ImportResult, ApiError } from '../types';
@@ -14,7 +14,7 @@ function getAiService(): AiService {
 }
 
 /**
- * Handle CSV import: parse file, extract with AI, return structured results.
+ * Handle File import: parse file, extract with AI, return structured results.
  */
 export async function handleImport(
   req: Request,
@@ -36,8 +36,15 @@ export async function handleImport(
       `Received file: ${file.originalname} (${(file.size / 1024).toFixed(1)}KB)`
     );
 
-    // 2. Parse CSV
-    const { rows, headers, errors } = parseCsv(file.buffer);
+    // 2. Parse File
+    const ext = file.originalname.toLowerCase().split('.').pop();
+    let rows, headers, errors;
+
+    if (ext === 'xlsx' || ext === 'xls') {
+      ({ rows, headers, errors } = parseExcel(file.buffer));
+    } else {
+      ({ rows, headers, errors } = parseCsv(file.buffer));
+    }
 
     if (rows.length === 0) {
       res.status(400).json({

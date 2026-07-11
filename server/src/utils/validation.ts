@@ -89,7 +89,7 @@ export function shouldSkipRecord(record: CrmRecord): boolean {
  */
 export function validateCsvFile(file: Express.Multer.File | undefined): string | null {
   if (!file) {
-    return 'No file uploaded. Please upload a CSV file.';
+    return 'No file uploaded. Please upload a CSV or Excel file.';
   }
 
   const allowedMimeTypes = [
@@ -99,12 +99,13 @@ export function validateCsvFile(file: Express.Multer.File | undefined): string |
     'application/vnd.ms-excel',
     'text/x-csv',
     'application/x-csv',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
   ];
 
   // Also check file extension
   const ext = file.originalname.toLowerCase().split('.').pop();
-  if (ext !== 'csv' && !allowedMimeTypes.includes(file.mimetype)) {
-    return 'Invalid file type. Please upload a CSV file.';
+  if (ext !== 'csv' && ext !== 'xlsx' && ext !== 'xls' && !allowedMimeTypes.includes(file.mimetype)) {
+    return 'Invalid file type. Please upload a CSV or Excel file.';
   }
 
   return null;

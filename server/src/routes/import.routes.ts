@@ -13,10 +13,10 @@ const upload = multer({
   },
   fileFilter: (_req, file, cb) => {
     const ext = file.originalname.toLowerCase().split('.').pop();
-    if (ext === 'csv') {
+    if (ext === 'csv' || ext === 'xlsx' || ext === 'xls') {
       cb(null, true);
     } else {
-      cb(new Error('Only CSV files are allowed'));
+      cb(new Error('Only CSV and Excel files are allowed'));
     }
   },
 });
