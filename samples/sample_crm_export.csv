@@ -1,0 +1,11 @@
+Full Name,Email Address,Phone Number,Company,City,Status,Notes
+John Doe,john.doe@example.com,+919876543210,GrowEasy,Mumbai,Interested,Client wants a demo next week
+Sarah Johnson,sarah.johnson@example.com,+919876543211,Tech Solutions,Bangalore,Not Reachable,"Called twice, no answer"
+Rajesh Patel,rajesh.patel@example.com,+919876543212,Startup Inc,Delhi,Not Interested,Not looking for services currently
+Priya Singh,priya.singh@example.com,+919876543213,Enterprise Corp,Pune,Converted,"Deal closed, starting onboarding"
+Amit Kumar,amit.kumar@example.com,+919876543214,Digital Agency,Hyderabad,Follow Up,Requested pricing details
+Neha Sharma,,+919876543215,CloudTech,Chennai,Interested,Wants to schedule a call
+,invalid@test.com,,,,Bad Lead,No company or phone
+Empty Record,,,,,,
+Ravi Verma,ravi@example.com,+919876543216,WebSoft,Jaipur,Interested,Looking for premium plan
+Meera Iyer,meera@example.com,+14155551234,US Branch Corp,San Francisco,Follow Up,"Has second email: meera.personal@gmail.com, call back Thursday"

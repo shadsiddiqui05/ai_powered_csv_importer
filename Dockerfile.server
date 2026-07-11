@@ -1,0 +1,23 @@
+FROM node:18-alpine AS base
+
+# ── Server Build ──
+FROM base AS server-deps
+WORKDIR /app/server
+COPY server/package.json server/package-lock.json* ./
+RUN npm ci --only=production
+
+FROM base AS server-build
+WORKDIR /app/server
+COPY server/package.json server/package-lock.json* ./
+RUN npm ci
+COPY server/ .
+RUN npm run build
+
+# ── Server Production ──
+FROM base AS server
+WORKDIR /app
+COPY --from=server-deps /app/server/node_modules ./node_modules
+COPY --from=server-build /app/server/dist ./dist
+COPY server/package.json .
+EXPOSE 3001
+CMD ["node", "dist/index.js"]

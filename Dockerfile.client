@@ -1,0 +1,24 @@
+FROM node:18-alpine AS base
+
+# ── Client Build ──
+FROM base AS deps
+WORKDIR /app
+COPY client/package.json client/package-lock.json* ./
+RUN npm ci
+
+FROM base AS build
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY client/ .
+ENV NEXT_PUBLIC_API_URL=http://localhost:3001
+RUN npm run build
+
+# ── Client Production ──
+FROM base AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+COPY --from=build /app/.next/standalone ./
+COPY --from=build /app/.next/static ./.next/static
+COPY --from=build /app/public ./public
+EXPOSE 3000
+CMD ["node", "server.js"]
