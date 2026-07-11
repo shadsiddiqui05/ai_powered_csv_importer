@@ -19,7 +19,7 @@ An intelligent CSV importer that uses AI (Google Gemini) to automatically map an
 - ⏳ **Loading States** — Animated progress indicators during AI processing
 
 ### Backend
-- 🤖 **AI-Powered Extraction** — Google Gemini 2.0 Flash for intelligent field mapping
+- 🤖 **AI-Powered Extraction** — Google gemini-2.5-flash-lite for intelligent field mapping
 - 📦 **Batch Processing** — Handles large CSVs by processing in batches of 25
 - 🔄 **Retry Mechanism** — Exponential backoff with 3 retries per batch
 - ✅ **Validation** — Post-processing validation enforces CRM enum constraints
