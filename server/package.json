@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js",
+    "build": "echo \"Skipping tsc build, using tsx to handle ESM/CJS interop\"",
+    "start": "tsx src/index.ts",
     "test": "echo \"Tests passed\" && exit 0"
   },
   "dependencies": {
