@@ -80,7 +80,7 @@ An intelligent CSV importer that uses AI (Google Gemini) to automatically map an
 
 ```bash
 git clone <repository-url>
-cd groweasy-csv-importer
+cd ai_powered_csv_importer
 ```
 
 ### 2. Setup the Backend
