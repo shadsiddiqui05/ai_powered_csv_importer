@@ -1,4 +1,4 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://ai-powered-csv-importer-eflt.onrender.com';
 
 /**
  * Send a CSV file to the backend for AI-powered import.
