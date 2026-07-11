@@ -4,7 +4,7 @@ An intelligent CSV importer that uses AI (Google Gemini) to automatically map an
 
 ![Tech Stack](https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js)
 ![Tech Stack](https://img.shields.io/badge/Express.js-4-green?style=flat-square&logo=express)
-![Tech Stack](https://img.shields.io/badge/Gemini_AI-2.0_Flash-blue?style=flat-square&logo=google)
+![Tech Stack](https://img.shields.io/badge/Gemini_AI-2.5_Flash_Lite-blue?style=flat-square&logo=google)
 ![Tech Stack](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript)
 
 ## ✨ Features
