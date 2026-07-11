@@ -6,13 +6,7 @@ import importRoutes from './routes/import.routes';
 const app = express();
 
 // ── Middleware ──
-app.use(
-  cors({
-    origin: config.clientUrl,
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type'],
-  })
-);
+app.use(cors());
 
 app.use(express.json());
 
