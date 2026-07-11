@@ -126,18 +126,7 @@ The frontend will start on **http://localhost:3000**
 5. View the results — imported records, skipped records, and stats
 6. Export the parsed CRM data as CSV
 
-## 🐳 Docker Setup
 
-```bash
-# Set your API key
-export GEMINI_API_KEY=your_api_key_here
-
-# Build and run both services
-docker-compose up --build
-```
-
-- Frontend: http://localhost:3000
-- Backend: http://localhost:3001
 
 ## 🔌 API Reference
 
