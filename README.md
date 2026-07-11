@@ -240,7 +240,3 @@ The `samples/` directory contains test CSVs with different formats:
 | Variable | Description | Default |
 |----------|-------------|---------|
 | `NEXT_PUBLIC_API_URL` | Backend API URL | `http://localhost:3001` |
-
-## 📝 License
-
-MIT
